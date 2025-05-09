@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melo's Pizza Y Mucho Más - Menú</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="cart.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="img/logo con llamas.jpeg" alt="Melo's Pizza Logo" class="logo">
+            <div class="site-title">
+                <h1>MELO'S PIZZA</h1>
+                <p class="subtitle-logo">Y MUCHO MÁS</p>
+            </div>
+        </div>
+        <div class="welcome-message-container">
+            <p class="welcome-message">¡Bienvenido a Melo's!</p>
+            <p class="welcome-message">Disfruta nuestros sabores.</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="acerca.html">ACERCA DE</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main class="about-us-content">
+        <h2>ACERCA DE NOSOTROS</h2>
+
+        <h3>Nuestra Historia</h3>
+        <p>
+            Aquí puedes escribir un pequeño párrafo sobre cómo empezó Melo's Pizza Y Mucho Más,
+            quiénes son los fundadores, cuándo se creó la empresa, o alguna anécdota
+            interesante sobre los inicios del negocio en Popayán.
+        </p>
+
+        <h3>Nuestra Misión</h3>
+        <p>
+            En Melo's Pizza Y Mucho Más, nuestra misión es deleitar a los habitantes y visitantes de Popayán
+            ofreciendo productos alimenticios de la más alta calidad y sabor inigualable. Nos comprometemos a
+            brindar una experiencia excepcional a través de un servicio al cliente amable y eficiente,
+            contribuyendo activamente al mismo tiempo al crecimiento económico y social de nuestra querida ciudad.
+        </p>
+
+        <h3>Nuestra Visión</h3>
+        <p>
+            Aspiramos a ser reconocidos como el referente gastronómico líder en Popayán,
+            distinguiéndonos por la excelencia constante en la calidad de nuestros productos y la calidez de nuestro
+            servicio.
+            Buscamos ser un motor de desarrollo local, impulsando la economía a través de la creación de empleo digno
+            y el apoyo a productores de la región, mientras construimos relaciones duraderas con nuestra comunidad.
+        </p>
+
+        <h3>Nuestros Valores</h3>
+        <ul>
+            <li>**Calidad Insuperable:** Nos dedicamos a utilizar los mejores ingredientes y procesos para garantizar
+                que cada plato sea delicioso y cumpla con los más altos estándares, reflejando nuestro compromiso con la
+                excelencia del producto.</li>
+            <li>**Servicio al Cliente Apasionado:** Ponemos a nuestros clientes en el centro de todo lo que hacemos,
+                esforzándonos por superar sus expectativas con atención, rapidez y una sonrisa, demostrando nuestro
+                compromiso con un excelente servicio.</li>
+            <li>**Compromiso con Popayán:** Creemos en el potencial de nuestra ciudad y trabajamos para aportar a su
+                prosperidad, generando oportunidades y fortaleciendo el tejido económico local a través de la creación
+                de empleo y el apoyo a la cadena productiva local, cumpliendo nuestro compromiso con el crecimiento
+                económico de la ciudad.</li>
+            <li>**Innovación y Mejora Continua:** Buscamos constantemente nuevas formas de mejorar nuestros productos,
+                servicios y operaciones para ofrecer siempre lo mejor.</li>
+            <li>**Integridad:** Operamos con honestidad, transparencia y respeto en todas nuestras interacciones con
+                clientes, empleados y proveedores.</li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; Melo's Pizza Y Mucho Más - Popayán, Colombia</p>
+        <p class="location-date">Popayán, Colombia - Mayo 2025</p>
+
+        <div id="cart-modal" class="cart-modal">
+            <div class="cart-modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Tu Carrito</h2>
+                <div id="cart-items">
+                    <p>El carrito está vacío.</p>
+                </div>
+
+                <div class="cart-summary-and-form">
+                    <div class="cart-total">
+                        <strong>Total: $<span id="cart-total-price">0</span></strong>
+                    </div>
+
+                    <div class="customer-info-form">
+                        <h3>Datos de Envío y Pago</h3>
+                        <form id="checkout-form">
+                            <div class="form-group">
+                                <label for="payment-method">Forma de Pago:</label>
+                                <select id="payment-method" required>
+                                    <option value="">Selecciona...</option>
+                                    <option value="nequi">Nequi</option>
+                                    <option value="bancolombia">Bancolombia</option>
+                                    <option value="daviplata">Daviplata</option>
+                                    <option value="efectivo">Efectivo</option>
+                                </select>
+                            </div>
+
+                            <p id="payment-proof-instruction" class="hidden-instruction">
+                                Por favor, envía el comprobante de transferencia al WhatsApp una vez realizado el pago.
+                            </p>
+
+                            <div class="form-group">
+                                <label for="shipping-address">Dirección de Envío:</label>
+                                <input type="text" id="shipping-address" required placeholder="Ej: Calle 123 # 45-67">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipping-neighborhood">Barrio:</label>
+                                <input type="text" id="shipping-neighborhood" required placeholder="Ej: Centro">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-phone">Celular de Contacto:</label>
+                                <input type="tel" id="contact-phone" required placeholder="Ej: 3124674602">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <button id="checkout-button">Enviar Pedido por WhatsApp</button>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/melospizzaymuchomas/" class="instagram-float" target="_blank"
+                aria-label="Instagram Page">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.link/iwu4x9" class="whatsapp-float" target="_blank" aria-label="WhatsApp Chat">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </footer>
+    <div class="floating-promo">
+        <p>¡Síguenos en Instagram y agréganos a WhatsApp para acceder a nuestras incleibles promociones!</p>
+        <div class="promo-hands">
+            <i class="fas fa-hand-point-down whatsapp-hand"></i>
+            <i class="fas fa-hand-point-down instagram-hand"></i>
+        </div>
+    </div>
+</body>
+
+</html>
