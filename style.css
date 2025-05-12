@@ -18,7 +18,7 @@ body {
     color: var(--negro-carbon);
     line-height: 1.6;
     /* Añadir padding-top al body para dejar espacio al header fijo */
-    padding-top: 8%;/* Ajusta este valor si el header tapa contenido */
+    /*padding-top: 8%;/* Ajusta este valor si el header tapa contenido */
 }
 
 /* --- Header Styles --- */
@@ -26,17 +26,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;    
+    padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
 
     /* Propiedades para hacerlo fijo */
-    position: fixed;
+    /*position: fixed;
     top: 0;
     left: 0;
     width: 98%; /* Corregido: Usar 100% para ocupar todo el ancho */
-    z-index: 1000;
-    border-bottom: 2px solid var(--naranja-salsa); /* Borde inferior para separar */
+    /*z-index: 1000;
+    border-bottom: 2px solid var(--naranja-salsa);*/ /* Borde inferior para separar */
 
     /* AÑADE estas propiedades para la imagen de fondo del header */
     background-image: url('img/foto-seccion-header.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE TU IMAGEN DE HEADER! */
@@ -121,48 +121,55 @@ nav ul li a:hover {
     color: var(--rojo-tomate); /* Color al pasar el mouse */
 }
 
-/* --- Responsive Header --- */
+
+/* --- Responsive Header (Dentro de @media (max-width: 768px)) --- */
 @media (max-width: 768px) {
-    body {
-        padding-top: 180px; /* Ajusta este padding si el header apilado es más alto */
-    }
-
-    header {
-        flex-direction: column; /* Apila los elementos */
-        align-items: center; /* Centra los elementos principales horizontalmente */
-    }
-
-    .header-left {
-        margin-bottom: 10px;
-        justify-content: center;
-        width: 100%; /* Ocupa todo el ancho al apilar */
-    }
-
-    .welcome-message-container {
-        margin-bottom: 10px;
-        width: 100%;
-        padding: 0 15px; /* Asegura el padding horizontal */
-    }
-
-    .welcome-message {
-        text-align: center; /* Asegura que el mensaje se centre en móvil */
-    }
-
+    /* MODIFICADO: La NAVEGACIÓN ahora siempre es visible en pantallas pequeñas y se apila */
     nav {
-        width: 100%; /* Asegura que la navegación ocupe todo el ancho */
-        min-width: auto; /* Elimina min-width en móvil */
+        display: block; /* La navegación es visible */
+        /* Remueve o ajusta el posicionamiento absoluto si el header es fixed */
+        /* position: static; top: auto; left: auto; */
+        width: 100%; /* Ocupa todo el ancho */
+        /* Ajusta el padding y otros estilos si quieres que se vea diferente en móvil */
     }
 
+    /* Estilos para los elementos de la lista dentro del menú apilado */
     nav ul {
-        flex-direction: column; /* Apila los enlaces */
-        align-items: center; /* Centra los enlaces dentro de la navegación */
-        justify-content: center; /* Centra si nav ul tiene espacio */
+        flex-direction: column; /* Apilar enlaces verticalmente */
+        align-items: center; /* Centrar enlaces */
+        padding: 10px 0; /* Añade padding */
+        margin: 0; /* Remueve margen */
+        background-color: transparent; /* Fondo del menú (si quieres un fondo diferente en móvil) */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+        /* Si el header es fixed, necesitarás posicionar esto correctamente debajo */
+        /* position: absolute; top: 100%; left: 0; */
     }
 
     nav ul li {
-        margin: 5px 0; /* Espacio vertical entre enlaces apilados */
+        margin: 8px 0; /* Espacio entre enlaces apilados */
     }
-}
+
+    nav ul li a {
+         font-size: 1.1em; /* Ajusta tamaño de fuente de enlaces en móvil */
+    }
+
+    /* Puedes ajustar la altura del header en móvil si la presencia del icono afecta el layout */
+    header {
+        /* Revisa tus estilos flex para asegurar que los elementos se distribuyen bien */
+         align-items: center;
+         justify-content: space-between; /* Ajusta según cómo quieres que se distribuyan logo, mensaje, nav */
+         padding: 10px 20px;
+         /* min-height: Xpx; */
+    }
+
+    /* Asegúrate de que el padding-top del body en este media query */
+    /* sea suficiente para el header si es fixed y el menú siempre visible está debajo */
+
+
+} /* Cierre del media query (max-width: 768px) */
+
+/* Puedes añadir estilos adicionales para la animación del menú si deseas */
+/* Por ejemplo, usando transform y opacity, pero es más avanzado. */
 
 
 /* --- Main Content Padding --- */
@@ -305,175 +312,52 @@ main {
      font-size: 1.1em;
 }
 
-/* --- Estilos Específicos para la Sección de Pizzas Tradicionales con Imagen de Fondo --- */
-#pizzas-tradicionales {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo */
-    background-image: url('img/fondo-pizzas-tradicionales.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE TU IMAGEN! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Establece un contexto de posicionamiento para el pseudo-elemento */
-    overflow: hidden; /* Opcional: Asegura que el fondo y la capa no sobresalgan si tienes border-radius */
-
-    /* El padding, margin, border-radius, box-shadow se heredan de .menu-section */
+/* --- Estilos Específicos para las Secciones con Imagen de Fondo (Mantenidos) --- */
+#pizzas-tradicionales, #pizzas-especiales, #hamburguesas, #hot-dogs, #sandwiches, #salchipapas, #lasana, #crepes, #adiciones, #bebidas {
+    background: none; /* Remueve color de fondo heredado si aplica */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: var(--blanco-crema);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Asegura que el contenido del menú (título, grid de items) aparezca POR ENCIMA de la capa semi-transparente */
-#pizzas-tradicionales h2,
-#pizzas-tradicionales .menu-grid {
-    position: relative; /* Le da al contenido un contexto de apilamiento */
-    z-index: 2; /* Coloca el contenido POR ENCIMA de la capa semi-transparente (que tiene z-index: 1) */
+/* Asegura que el contenido esté encima del fondo (Mantenido) */
+#pizzas-tradicionales h2, #pizzas-tradicionales .menu-grid,
+#pizzas-especiales h2, #pizzas-especiales .menu-grid,
+#hamburguesas h2, #hamburguesas .menu-grid,
+#hot-dogs h2, #hot-dogs .menu-grid,
+#sandwiches h2, #sandwiches .menu-grid,
+#salchipapas h2, #salchipapas .menu-grid,
+#lasana h2, #lasana .menu-grid,
+#crepes h2, #crepes .menu-grid,
+#adiciones h2, #adiciones .menu-grid,
+#bebidas h2, #bebidas .menu-grid {
+    position: relative;
+    z-index: 2;
 }
 
-/* --- Estilos Específicos para la Sección de Pizzas Especiales con Imagen de Fondo --- */
-#pizzas-especiales {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
+/* Fondos específicos (Mantén tus rutas y opacidades si usaste :before) */
+#pizzas-tradicionales { background-image: url('img/fondo-pizzas-tradicionales.jpg'); }
+#pizzas-especiales { background-image: url('img/foto-pizzas-especiales.jpg'); }
+#hamburguesas { background-image: url('img/foto-seccion-hamburguesas.avif'); }
+#hot-dogs { background-image: url('img/foto-sección-hotDogs.jpg'); }
+#sandwiches { background-image: url('img/foto-seccion-sandwiches.jpg'); }
+#salchipapas { background-image: url('img/foto-seccion-salchiPapas.jpg'); }
+#lasana { background-image: url('img/foto-seccion.lasaña.webp'); }
+#crepes { background-image: url('img/foto-seccion-crepes.webp'); }
+#adiciones { background-image: url('img/foto-seccion-adiciones.jpg'); }
+#bebidas { background-image: url('img/foto-seccion-bebidas.webp'); }
 
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-pizzas-especiales.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
 
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-/* --- Estilos Específicos para la Sección de Pizzas Especiales con Imagen de Fondo --- */
-#hamburguesas {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-hamburguesas.avif'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#hot-dogs {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-sección-hotDogs.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#sandwiches {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-sandwiches.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#salchipapas  {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-salchiPapas.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#lasana {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion.lasaña.webp'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#crepes {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-crepes.webp'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#adiciones {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-adiciones.jpg'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-#bebidas {
-    /* Remueve el background-color o background que pueda heredar si quieres solo la imagen */
-    background: none;
-
-    /* Configura la imagen de fondo para esta sección */
-    background-image: url('img/foto-seccion-bebidas.webp'); /* <-- ¡REEMPLAZA ESTO CON LA RUTA REAL DE LA IMAGEN PARA PIZZAS ESPECIALES! */
-    background-size: cover; /* Escala la imagen para que cubra toda el área manteniendo su proporción */
-    background-position: center center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: var(--blanco-crema); /* Color de fondo de respaldo si la imagen no carga */
-
-    position: relative; /* Mantenemos esto como buena práctica para el contenedor */
-    overflow: hidden; /* Opcional: asegura que el background no se salga de los bordes redondeados */
-}
-
-/* Estilos para items de precio único clickeables */
+/* Estilos para items de precio único clickeables (Mantenido) */
 .single-price-item {
     cursor: pointer;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-/* --- Footer Styles --- */
+/* --- Footer Styles (Mantenido) --- */
 footer {
     display: flex;
     align-items: center;
@@ -499,6 +383,7 @@ footer p {
     opacity: 0.9;
 }
 
+/* --- Social Links en Footer (Mantenido) --- */
 .social-links { /* Contenedor para los iconos sociales del footer */
     display: flex;
     align-items: center;
@@ -521,210 +406,216 @@ footer p {
 }
 
 
-/* --- Estilos de Botones Flotantes (WhatsApp, Instagram) --- */
-/* Estos deben ser diferentes de los iconos del footer */
-
-.whatsapp-float, .instagram-float {
+/* --- Estilos de Botones Flotantes (WhatsApp, Instagram) - ¡MANTENIDOS CON TUS VALORES! --- */
+.whatsapp-float {
     position: fixed;
-    width: 50px; /* Tamaño ajustado */
-    height: 50px; /* Tamaño ajustado */
-    right: 118px; /* Distancia desde el borde derecho */
-    bottom: 100px; /* Distancia desde abajo (para WhatsApp) */
+    width: 50px;
+    height: 50px;
+    right: 118px; /* <-- MANTENIDO CON TU VALOR */
+    bottom: 100px; /* <-- MANTENIDO CON TU VALOR */
     border-radius: 50%;
     text-align: center;
-    font-size: 25px; /* Tamaño del icono dentro del círculo */
+    font-size: 25px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    z-index: 999; /* Un z-index alto, pero menor que el modal */
+    z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     transition: transform 0.2s ease;
-    color: white; /* Color del icono dentro de los botones */
-}
-
-.whatsapp-float {
-    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    background-color: #25D366;
 }
 
 .instagram-float {
-    bottom: 160px; /* Distancia desde abajo (20px de whatsapp + 10px espacio + 50px alto botón) */
-    /* Fondo de gradiente de Instagram */
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 118px; /* <-- MANTENIDO CON TU VALOR (Asumo que es el mismo que whatsapp-float) */
+    bottom: 160px; /* <-- MANTENIDO CON TU VALOR */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    color: white;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
 }
-
 
 .whatsapp-float:hover, .instagram-float:hover {
     transform: scale(1.1);
 }
 
-/* --- Estilos para el Mensaje, Manos y Botones Flotantes (Contenedor Principal) --- */
+/* --- Estilos del Botón Flotante del Carrito - ¡MANTENIDOS CON TUS VALORES! --- */
+.cart-float {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 115px; /* <-- MANTENIDO CON TU VALOR */
+    bottom: 30px; /* <-- MANTENIDO CON TU VALOR */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    color: white;
+    background-color: var(--negro-carbon);
+}
+
+.cart-float:hover {
+    transform: scale(1.1);
+}
+
+/* --- Estilos del Contador en el Botón Flotante del Carrito (Mantenido) --- */
+#cart-count-float {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--blanco-crema);
+    color: var(--rojo-tomate);
+    border-radius: 50%;
+    padding: 1px 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1.4;
+    border: 1px solid white;
+    z-index: 1;
+}
+
+/* Ajustes responsive para el botón flotante del carrito (Mantenido) */
+@media (max-width: 1200px) {
+    .cart-float {
+        right: 40px;
+        bottom: 30px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    #cart-count-float {
+         top: -5px;
+         right: -5px;
+         font-size: 0.6em;
+         min-width: 15px;
+         padding: 1px 4px;
+    }
+}
+
+
+/* --- Estilos para el Mensaje Flotante (Contenedor Principal) - ¡MANTENIDOS CON TUS VALORES! --- */
 .floating-promo {
-    position: fixed; /* Lo hace flotante */
-    bottom: 230px; /* Posiciona la caja flotante cerca de la parte inferior */
-    right: 35px; /* Posiciona la caja flotante cerca del lado derecho */
-    z-index: 998; /* Asegura que esté debajo del modal (1002), pero por encima del contenido normal */
-    /* background-color: rgba(255, 255, 255, 0.95); /* REMOVEmos el fondo estático */
-
-    /* Añadimos el fondo de gradiente con tus colores */
+    position: fixed;
+    bottom: 230px; /* <-- MANTENIDO CON TU VALOR */
+    right: 35px; /* <-- MANTENIDO CON TU VALOR */
+    z-index: 998;
     background: linear-gradient(135deg, var(--rojo-tomate), var(--amarillo-queso), var(--naranja-salsa), var(--verde-albahaca));
-    background-size: 400% 400%; /* Hacemos el gradiente más grande para que el movimiento sea suave */
-
-    /* Aplicamos la animación */
-    animation: color-animation 15s ease infinite; /* Nombre, duración, curva de tiempo, repetición infinita */
-
-
-    padding: 5px; /* Ajusta el padding interno */
+    background-size: 400% 400%;
+    animation: color-animation 15s ease infinite;
+    padding: 5px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    max-width: 220px; /* Limita el ancho en pantallas grandes */
-    text-align: center; /* Centra el texto dentro del contenedor */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 220px; /* <-- MANTENIDO CON TU VALOR */
+    text-align: center;
     font-size: 0.95em;
     line-height: 1.4;
     font-family: var(--font-primary);
-    color: var(--negro-carbon); /* Mantenemos el texto oscuro */
-    /* Opcional: añade sombra al texto para mejorar la legibilidad sobre el fondo cambiante */
+    color: var(--negro-carbon);
     text-shadow: 0 0 5px rgba(255,255,255,0.5);
     box-sizing: border-box;
-    display: flex; /* Usa flexbox para organizar el contenido interno */
-    flex-direction: column; /* Apila los elementos (texto, manos, botones) verticalmente */
-    align-items: center; /* Centra los elementos (manos, botones) horizontalmente */
-}
-
-/* Define los keyframes para la animación del fondo */
-@keyframes color-animation {
-    0% {
-        background-position: 0% 0%;
-    }
-    25% {
-        background-position: 100% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    75% {
-        background-position: 0% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-.floating-promo p {
-    margin: 0 0 8px 0; /* Espacio debajo del texto */
-}
-
-.promo-hands {
-    display: flex; /* Usa flexbox para alinear las manos */
-    justify-content: space-around; /* Distribuye espacio alrededor de las manos */
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%; /* Asegura que ocupe el ancho del contenedor para distribuir las manos */
 }
 
-.promo-hands i {
-    font-size: 1.8em; /* Tamaño de los iconos de mano */
-    color: var(--rojo-tomate); /* Color de las manos (puedes ajustar) */
-    /* Ajusta la rotación si las manos no apuntan donde quieres */
-    /* transform: rotate(Xdeg); */
+/* Keyframes para la animación del fondo (Mantenido) */
+@keyframes color-animation {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
-/* Ajustes responsive para el mensaje flotante */
-@media (max-width: 768px) {
+.floating-promo p { margin: 0 0 8px 0; }
+.promo-hands { display: flex; justify-content: space-around; align-items: center; width: 100%; }
+.promo-hands i { font-size: 1.8em; color: var(--rojo-tomate); }
+
+/* Ajustes responsive para el mensaje flotante (Mantenido) */
+@media (max-width: 1200px) {
     .floating-promo {
-        right: 10px; /* Ajusta la posición a la derecha en pantallas más pequeñas */
-        bottom: 221px; /* Ajusta la distancia desde abajo en pantallas más pequeñas */
-        max-width: 100px; /* Limita aún más el ancho */
+        right: 10px;
+        bottom: 221px;
+        max-width: 100px;
         padding: 8px 10px;
-        font-size: 0.85em; /* Reduce tamaño de fuente */
+        font-size: 0.85em;
     }
 
-    .promo-hands i {
-        font-size: 1.5em; /* Reduce tamaño de manos */
-    }
+    .promo-hands i { font-size: 1.5em; }
 
     /* Asegura que los botones flotantes mantengan su posición relativa al borde */
-    .whatsapp-float {
-        bottom: 90px;
-        right: 34px; /* Alinea con el nuevo right del promo */
-    }
-
-    .instagram-float {
-        bottom: 160px;
-        right: 34px; /* Alinea con el nuevo right del promo */
-    }
+    .whatsapp-float { bottom: 90px; right: 34px; }
+    .instagram-float { bottom: 160px; right: 34px; }
 }
 
+/* --- Estilos para la Caja de Tamaños Flotante - ¡MANTENIDOS CON TUS VALORES! --- */
 .floating-tamaños {
-    position: fixed; /* Lo hace flotante */
-    bottom: 120px; /* Posiciona la caja flotante cerca de la parte inferior */
-    left: 40px; /* Posiciona la caja flotante cerca del lado izquierdo */
-    z-index: 998; /* Asegura que esté debajo del modal (1002), pero por encima del contenido normal */
-    /* background-color: rgba(255, 255, 255, 0.95); /* REMOVEmos el fondo estático */
-
-    /* Añadimos el fondo de gradiente con tus colores */
+    position: fixed;
+    bottom: 120px; /* <-- MANTENIDO CON TU VALOR */
+    left: 40px; /* <-- MANTENIDO CON TU VALOR */
+    z-index: 998;
     background: linear-gradient(135deg, var(--rojo-tomate), var(--amarillo-queso), var(--naranja-salsa), var(--verde-albahaca));
-    background-size: 400% 400%; /* Hacemos el gradiente más grande para que el movimiento sea suave */
-
-    /* Aplicamos la animación */
-    animation: color-animation 15s ease infinite; /* Nombre, duración, curva de tiempo, repetición infinita */
-
-
-    padding: 15px; /* Ajusta el padding interno */
+    background-size: 400% 400%;
+    animation: color-animation 15s ease infinite;
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    max-width: 220px; /* Limita el ancho en pantallas grandes */
-    text-align: center; /* Centra el texto dentro del contenedor */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 220px; /* <-- MANTENIDO CON TU VALOR */
+    text-align: center;
     font-size: 0.95em;
     line-height: 1.4;
     font-family: var(--font-primary);
-    color: var(--negro-carbon); /* Mantenemos el texto oscuro */
-    /* Opcional: añade sombra al texto para mejorar la legibilidad sobre el fondo cambiante */
+    color: var(--negro-carbon);
     text-shadow: 0 0 5px rgba(255,255,255,0.5);
     box-sizing: border-box;
-    display: flex; /* Usa flexbox para organizar el contenido interno */
-    flex-direction: column; /* Apila los elementos (texto, manos, botones) verticalmente */
-    align-items: center; /* Centra los elementos (manos, botones) horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Define los keyframes para la animación del fondo */
-@keyframes color-animation {
-    0% {
-        background-position: 0% 0%;
-    }
-    25% {
-        background-position: 100% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    75% {
-        background-position: 0% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
+.floating-tamaños p { margin: 0 0 8px 0; }
 
-.floating-tamaños p {
-    margin: 0 0 8px 0; /* Espacio debajo del texto */
-}
-
-/* Ajustes responsive para el mensaje flotante */
-@media (max-width: 768px) {
+/* Ajustes responsive para la caja de tamaños flotante (Mantenido) */
+@media (max-width: 1200px) {
     .floating-tamaños {
-        left: 10px; /* Ajusta la posición a la derecha en pantallas más pequeñas */
-        bottom: 82px; /* Ajusta la distancia desde abajo en pantallas más pequeñas */
-        max-width: 100px; /* Limita aún más el ancho */
+        left: 10px;
+        bottom: 155px;
+        max-width: 80px;
         padding: 8px 10px;
-        font-size: 0.85em; /* Reduce tamaño de fuente */
+        font-size: 0.85em;
     }
 }
 
-/* --- Contact Page Styles --- */
+
+/* --- Contact Page Styles (Mantenido) --- */
 .contact-content {
-    padding: 20px; /* Ajusta el padding */
-    max-width: 800px; /* Ancho máximo para el contenido */
-    margin: 0 auto; /* Centra el contenido */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: var(--font-secondary);
+    color: var(--amarillo-queso);
+    line-height: 1.6;
 }
 
 .contact-content h2 {
@@ -743,12 +634,11 @@ footer p {
 .contact-map {
     flex: 2;
     min-width: 300px;
-    /* max-width: 600px; Opcional: Ancho máximo para el mapa */
 }
 
-.contact-container iframe { /* Estilos para el iframe del mapa */
+.contact-container iframe {
     width: 100%;
-    height: 400px; /* Altura del mapa */
+    height: 400px;
     border: 1px solid #ccc;
     border-radius: 8px;
 }
@@ -758,12 +648,12 @@ footer p {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-width: 250px; /* Ancho mínimo para los detalles de contacto */
+    min-width: 250px;
 }
 
 .contact-column h3 {
     margin-top: 0;
-    font-family: var(--font-secondary); /* Usa Poppins para subtítulos */
+    font-family: var(--font-secondary);
     color: var(--amarillo-queso);
     font-size: 1.2em;
     border-bottom: 2px solid var(--rojo-tomate);
@@ -780,10 +670,10 @@ footer p {
 
 .contact-column p i {
     margin-right: 8px;
-    color: var(--rojo-tomate); /* Color de los iconos de contacto */
+    color: var(--rojo-tomate);
 }
 
-/* --- Responsive Contact Page --- */
+/* --- Responsive Contact Page (Mantenido) --- */
 @media (max-width: 768px) {
     .contact-container {
         flex-direction: column;
@@ -804,11 +694,11 @@ footer p {
     }
 }
 
-/* --- About Us Page Styles --- */
+/* --- About Us Page Styles (Mantenido) --- */
 .about-us-content {
-    padding: 20px; /* Ajustado padding */
-    max-width: 800px; /* Ancho máximo */
-    margin: 0 auto; /* Centra */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
     font-family: var(--font-secondary);
     color: var(--amarillo-queso);
     line-height: 1.6;
@@ -838,65 +728,45 @@ footer p {
     margin-bottom: 10px;
 }
 
-/* --- Estilos del Icono del Carrito en el Header --- */
+/* --- Estilos del Icono del Carrito en el Header (Original) - Oculto --- */
 .cart-icon-container {
-    position: relative;
-    font-size: 1.8em;
-    color: var(--negro-carbon); /* Color del icono */
-    cursor: pointer;
-    margin-left: 20px;
-    transition: color 0.2s ease;
+    display: none; /* Ocultar el icono del header */
 }
 
-.cart-icon-container:hover {
-    color: var(--rojo-tomate); /* Color al pasar el mouse */
-}
-
+/* Ocultar el contador del viejo carrito también */
 #cart-count {
-    position: absolute;
-    top: -8px; /* Ajustado */
-    right: -8px; /* Ajustado */
-    background-color: var(--rojo-tomate); /* Color de fondo del contador */
-    color: white;
-    border-radius: 50%;
-    padding: 1px 5px; /* Ajustado padding */
-    font-size: 0.7em;
-    font-weight: bold;
-    min-width: 18px; /* Ajustado */
-    text-align: center;
-    line-height: 1.4; /* Asegura que el número esté centrado verticalmente */
-    border: 1px solid white; /* Borde sutil */
+    display: none; /* Ocultar el contador del viejo carrito */
 }
 
-/* --- Estilos del Modal del Carrito --- */
+
+/* --- Estilos del Modal del Carrito (Mantenido) --- */
 .cart-modal {
     display: none;
     position: fixed;
-    z-index: 1002; /* Asegura que esté por encima de botones flotantes y header */
+    z-index: 1001; /* Asegura que esté encima de TODO */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Permite scroll en el fondo oscuro si el modal es más alto que la ventana */
-    background-color: rgba(0,0,0,0.6); /* Fondo más oscuro */
-    padding-top: 20px; /* Ajustado espacio desde arriba para el modal */
-    padding-bottom: 20px; /* Añadido espacio desde abajo */
-    box-sizing: border-box; /* Incluye padding en height */
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .cart-modal-content {
     background-color: #fefefe;
-    margin: 0 auto; /* Centrado horizontal */
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 90%; /* Ancho en pantallas pequeñas */
-    max-width: 600px; /* Ancho máximo */
+    width: 90%;
+    max-width: 600px;
     border-radius: 10px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    max-height: calc(100vh - 40px); /* Limita la altura del contenido del modal */
-    overflow-y: auto; /* Habilita el scroll vertical DENTRO del contenido del modal */
-    /* margin-top ya no es necesario si el padding-top/bottom del modal es suficiente */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
 }
 
 .cart-modal-content h2 {
@@ -932,13 +802,13 @@ footer p {
     padding-top: 15px;
 }
 
-#cart-items p { /* Estilo para el mensaje "Carrito vacío" */
+#cart-items p {
     text-align: center;
     color: #555;
     font-style: italic;
 }
 
-/* --- Estilos de los Items en el Carrito Modal --- */
+/* --- Estilos de los Items en el Carrito Modal (Mantenido) --- */
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -956,7 +826,7 @@ footer p {
 }
 
 .cart-item-details h4 {
-    text-align: center; /* CORREGIDO: Centra el nombre del producto */
+    text-align: center;
     margin: 0 0 5px 0;
     font-size: 1.1em;
     color: var(--negro-carbon);
@@ -966,7 +836,7 @@ footer p {
     margin: 0;
     font-size: 0.9em;
     color: #555;
-    text-align: center; /* Opcional: Centrar precio unitario si lo deseas */
+    text-align: center;
 }
 
 .cart-item-actions {
@@ -979,15 +849,15 @@ footer p {
 .quantity-control {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc; /* CORREGIDO: Añade un borde alrededor del control */
+    border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
 }
 
 .quantity-button {
     background-color: #f0f0f0;
-    border: none; /* CORREGIDO: Quitamos el borde individual de los botones */
-    padding: 8px 12px; /* Ajustado padding */
+    border: none;
+    padding: 8px 12px;
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
@@ -1000,49 +870,47 @@ footer p {
 }
 
 .item-quantity-display {
-    display: inline-block; /* CORREGIDO: Asegura que se comporte como un bloque para padding/width */
-    padding: 0 12px; /* CORREGIDO: Ajustado padding */
+    display: inline-block;
+    padding: 0 12px;
     font-size: 1em;
-    min-width: 25px; /* CORREGIDO: Ajustado ancho mínimo */
+    min-width: 25px;
     text-align: center;
-    border-left: 1px solid #ccc; /* CORREGIDO: Separador visual */
-    border-right: 1px solid #ccc; /* CORREGIDO: Separador visual */
-    color: var(--negro-carbon); /* Asegura que el color del texto no sea transparente o igual al fondo */
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    color: var(--negro-carbon);
 }
 
 .remove-item {
-    color: var(--rojo-tomate); /* Usar color de variable */
+    color: var(--rojo-tomate);
     cursor: pointer;
-    font-size: 1.4em; /* Ajustado tamaño del ícono */
+    font-size: 1.4em;
     transition: color 0.2s ease;
     display: flex;
     align-items: center;
-    padding: 5px; /* Área clickeable más grande */
+    padding: 5px;
 }
 
 .remove-item:hover {
     color: #cc0000;
 }
 
-/* Ajustes responsive para items del carrito */
+/* Ajustes responsive para items del carrito (Mantenido) */
 @media (max-width: 600px) {
     .cart-item {
         flex-direction: column;
         align-items: flex-start;
-        
     }
 
     .cart-item-details {
         margin-right: 0;
         margin-bottom: 10px;
-         width: 100%; /* Ocupa todo el ancho en móvil */
-         text-align: center; /* Centra el texto del producto en móvil */
+        width: 100%;
+        text-align: center;
     }
 
     .cart-item-details h4, .cart-item-details p {
-         text-align: center; /* Asegura que el nombre y precio unitario se centren en móvil */
+         text-align: center;
     }
-
 
     .cart-item-actions {
         width: 100%;
@@ -1050,24 +918,19 @@ footer p {
         gap: 0;
     }
 
-    .quantity-control {
-         border: none;
-         /* Puedes ajustar el padding de los botones aquí si es necesario */
-    }
+    .quantity-control { border: none; }
 
      .item-quantity-display {
          border-left: none;
          border-right: none;
-         padding: 0 8px; /* Ajusta el padding solo del número en móvil */
-         min-width: 20px; /* Ajusta el ancho mínimo en móvil */
+         padding: 0 8px;
+         min-width: 20px;
      }
 
-     .quantity-button {
-         padding: 8px; /* Ajustado padding de botones en móvil */
-     }
+     .quantity-button { padding: 8px; }
 }
 
-/* --- Estilos para el Formulario dentro del Modal --- */
+/* --- Estilos para el Formulario dentro del Modal (Mantenido) --- */
 .cart-summary-and-form {
     display: flex;
     flex-direction: column;
@@ -1078,7 +941,7 @@ footer p {
 }
 
 .customer-info-form h3 {
-    text-align: center; /* CORREGIDO: Centra el título "Datos de Envío y Pago" */
+    text-align: center;
     color: var(--rojo-tomate);
     font-family: var(--font-primary);
     margin-top: 0;
@@ -1094,7 +957,7 @@ footer p {
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
-    text-align: center; /* CORREGIDO: Centra las etiquetas del formulario */
+    text-align: center;
 }
 
 .form-group input[type="text"],
@@ -1106,8 +969,6 @@ footer p {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 1em;
-    /* Puedes centrar el texto dentro de los inputs si quieres, pero no es común */
-    /* text-align: center; */
 }
 
 .hidden-instruction {
@@ -1117,79 +978,44 @@ footer p {
     margin-bottom: 15px;
     display: none;
     font-size: 0.95em;
-    text-align: center; /* Centra la instrucción de comprobante */
+    text-align: center;
 }
 
-/* Estilo para el botón de Enviar Pedido */
+/* Estilo para el botón de Enviar Pedido (Mantenido) */
 #checkout-button {
     display: block;
     width: 100%;
-    padding: 15px; /* Aumentado padding para hacerlo más visible */
-    background-color: var(--rojo-tomate); /* Usar color de variable */
+    padding: 15px;
+    background-color: var(--rojo-tomate);
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.3em; /* Aumentado tamaño de fuente */
+    font-size: 1.3em;
     cursor: pointer;
-    margin-top: 30px; /* Aumentado margen superior */
+    margin-top: 30px;
     transition: background-color 0.3s ease;
-    text-align: center; /* Asegura que el texto del botón esté centrado */
-    font-family: var(--font-primary); /* Opcional: usar fuente primaria */
+    text-align: center;
+    font-family: var(--font-primary);
 }
 
-#checkout-button:hover {
-    background-color: #cc2736; /* Un rojo un poco más oscuro */
-}
-
-/* Estilo para el botón de Enviar Pedido deshabilitado */
-#checkout-button:disabled {
-    background-color: #cccccc; /* Gris */
-    cursor: not-allowed;
-}
+#checkout-button:hover { background-color: #cc2736; }
+#checkout-button:disabled { background-color: #cccccc; cursor: not-allowed; }
 
 
-/* Ajustes Responsive General */
+/* Ajustes Responsive General (Mantenido) */
 @media (max-width: 768px) {
-    main {
-        padding: 20px 10px; /* Ajusta padding en pantallas pequeñas */
-    }
-
-    .menu-grid {
-        gap: 15px; /* Reduce espacio entre items en móvil */
-    }
-
-    .menu-item {
-        padding: 10px; /* Reduce padding en items */
-    }
-
-    .menu-section h2 {
-        font-size: 1.8em; /* Ajusta tamaño de título */
-    }
-
-    .menu-item h3 {
-        font-size: 1.2em;
-    }
-
-    .menu-item .description {
-        min-height: auto; /* Elimina altura mínima en móvil */
-    }
-
-    /* Ajustes de fuentes en móvil si es necesario */
-     body { font-size: 0.95em; }
-     .site-title h1 { font-size: 2em; }
-     .site-title .subtitle-logo { font-size: 0.9em; }
-     .welcome-message { font-size: 1em; }
-
+    main { padding: 20px 10px; }
+    .menu-grid { gap: 15px; }
+    .menu-item { padding: 10px; }
+    .menu-section h2 { font-size: 1.8em; }
+    .menu-item h3 { font-size: 1.2em; }
+    .menu-item .description { min-height: auto; }
+    body { font-size: 0.95em; }
+    .site-title h1 { font-size: 2em; }
+    .site-title .subtitle-logo { font-size: 0.9em; }
+    .welcome-message { font-size: 1em; }
     .cart-modal-content {
-         /* Ajusta el max-height si el header o footer consumen más espacio en móvil */
-        max-height: calc(100vh - 80px); /* Deja más espacio vertical en móvil */
-         margin: 10px auto; /* Reduce margen superior/inferior en móvil */
+        max-height: calc(100vh - 80px);
+        margin: 10px auto;
     }
 }
-
-/* Media query para pantallas aún más pequeñas si es necesario */
-/*
-@media (max-width: 480px) {
-    // Ajustes adicionales
-}
-*/
