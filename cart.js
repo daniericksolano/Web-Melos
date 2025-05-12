@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Añadir instrucción de comprobante si la forma de pago lo requiere
             if (paymentMethodValue === 'nequi' || paymentMethodValue === 'bancolombia' || paymentMethodValue === 'daviplata') {
-                 whatsappMessage += "Por favor, envía el comprobante de pago para confirmar tu pedido. Pregunta por el costo del domicilio si no lo conoces.\n\n";
+                 whatsappMessage += "Por favor pregunta por el costo del domicilio antes de realizar el pago y envía el comprobante de pago para confirmar tu pedido.\n\n";
             }
 
             // --- Codificar el mensaje para la URL de WhatsApp ---
