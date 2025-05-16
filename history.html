@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melo's Pizza - Historial de Compras</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="auth.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script src="history.js" defer></script>
+
+     <style>
+        /* Estilos para ocultar elementos si el usuario no está logueado */
+        /* Puedes añadir estos estilos a tu style.css principal también */
+         .requires-login { display: none; }
+         .show-if-not-logged-in { display: list-item; } /* Asegurar que se muestran por defecto */
+     </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="img/logo con llamas.jpeg" alt="Melo's Pizza Logo" class="logo">
+            <div class="site-title">
+                <h1>MELO'S PIZZA</h1>
+                <p class="subtitle-logo">Y MUCHO MÁS</p>
+            </div>
+        </div>
+        <div class="welcome-message-container">
+             <p class="welcome-message">Tu Historial de Compras</p>
+             </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="acerca.html">ACERCA DE</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <!-- <li class="requires-login"><a href="history.html">Historial</a></li> -->
+                <li class="requires-login"><a href="#" id="logout-link">CERRAR SESIÓN</a></li>
+                <li class="show-if-not-logged-in"><a href="login.html">INICIAR SESIÓN</a></li>
+                <li class="show-if-not-logged-in"><a href="register.html">REGISTRARSE</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon-container" style="display: none;">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="history-section">
+            <div class="container">
+                <h2>Mis Pedidos</h2>
+                <div id="orders-list">
+                    <p>Cargando historial...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/melospizzaymuchomas/" target="_blank" aria-label="Instagram Page">
+                <i class="fab fa-instagram"></i>
+            </a>
+             <a href="https://wa.link/iwu4x9" target="_blank" aria-label="WhatsApp Chat">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <p>&copy; 2023 Melo's Pizza Y Mucho Más. Todos los derechos reservados.</p>
+         <p class="location-date">Popayán, Cauca. 2023.</p>
+    </footer>
+
+    <a href="#" class="cart-float">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count-float">0</span>
+    </a>
+
+    <div class="floating-promo">
+        <p>¡Síguenos en Instagram y agréganos a WhatsApp para acceder a nuestras incleibles promociones!</p>
+        <div class="promo-hands">
+            <i class="fas fa-hand-point-down whatsapp-hand"></i>
+            <i class="fas fa-hand-point-down instagram-hand"></i>
+        </div>
+    </div>
+
+    <div class="floating-tamaños">
+        <p>¡G = 8 porciones!</p>
+        <p>¡M = 6 porciones!</p>
+        <p>¡P = 4 porciones!</p>
+        <p>¡Ps = 4 porciones pequeñas!</p>
+        <p>¡Pc = Porción!</p>
+    </div>
+
+    <a href="https://wa.link/iwu4x9" class="whatsapp-float" target="_blank">
+         <i class="fab fa-whatsapp"></i>
+     </a>
+
+    <a href="https://www.instagram.com/melospizzaymuchomas/" class="instagram-float" target="_blank">
+         <i class="fab fa-instagram"></i>
+     </a>
+    </body>
+</html>
