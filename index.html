@@ -8,7 +8,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="auth.js" defer></script>
         <script src="cart.js" defer></script>
+        <script src="history.js" defer></script>
     </head>
 <body>
     <header>
@@ -25,9 +27,13 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">HOME</a></li>
+                <!-- <li><a href="index.html">HOME</a></li> -->
                 <li><a href="acerca.html">ACERCA DE</a></li>
                 <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="history.html">HISTORIAL</a></li>
+                <li class="requires-login"><a href="#" id="logout-link">CERRAR SESIÓN</a></li>
+                <li class="show-if-not-logged-in"><a href="login.html">INICIAR SESIÓN</a></li>
+                <li class="show-if-not-logged-in"><a href="register.html">REGISTRARSE</a></li>
             </ul>
         </nav>
         <div class="cart-icon-container">
